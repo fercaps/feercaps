@@ -74,7 +74,6 @@ function agregarAlCarrito(button) {
     card.style.position = 'relative';
     card.appendChild(popup);
     
-    // Auto-remover la miniventana flotante después de 5 segundos
     setTimeout(() => {
         if (popup && popup.parentNode) {
             popup.remove();
@@ -238,12 +237,13 @@ function ordenarPorPrecio(seccionId, criterio) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-// Abrir una nueva pestaña independiente con el diseño de la tienda y selector de tallas
+// Abrir una nueva pestaña independiente enviando todas las imágenes adicionales configuradas
 function abrirZoom(imgElement) {
     const card = imgElement.closest('.card-producto');
     if (!card) return;
 
     const imageSrc = imgElement.getAttribute('src');
+    const extras = imgElement.getAttribute('data-extras') || '';
     const titleEl = card.querySelector('h3');
     const productName = titleEl ? titleEl.innerText : 'FEER CAPS';
     
@@ -253,7 +253,11 @@ function abrirZoom(imgElement) {
     const section = card.closest('section');
     const categoriaId = section ? section.getAttribute('id') : '';
 
-    const urlDestino = `producto.html?img=${encodeURIComponent(imageSrc)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&cat=${encodeURIComponent(categoriaId)}`;
+    let urlDestino = `producto.html?img=${encodeURIComponent(imageSrc)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&cat=${encodeURIComponent(categoriaId)}`;
+    
+    if (extras) {
+        urlDestino += `&extras=${encodeURIComponent(extras)}`;
+    }
     
     window.open(urlDestino, '_blank');
 }
