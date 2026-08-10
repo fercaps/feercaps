@@ -275,3 +275,28 @@ window.addEventListener('click', function(event) {
         modalZoom.classList.remove('active');
     }
 });
+function abrirQRModal() {
+    const modal = document.getElementById('qrModal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function cerrarQRModal() {
+    const modal = document.getElementById('qrModal');
+    if (modal) modal.style.display = 'none';
+}
+
+function cambiarBancoQR() {
+    const select = document.getElementById('selectBancoQR');
+    const imgQR = document.getElementById('imgQRToggle');
+    const txtBanco = document.getElementById('txtBancoQR');
+
+    if (!select || !imgQR || !txtBanco) return;
+
+    if (select.value === 'pichincha') {
+        imgQR.src = 'img/qr-banco1.jpg'; // Imagen QR Banco Pichincha
+        txtBanco.innerText = 'Escanea para pagar con Banco Pichincha';
+    } else if (select.value === 'guayaquil') {
+        imgQR.src = 'img/qr-banco2.jpg'; // Imagen QR Banco Guayaquil
+        txtBanco.innerText = 'Escanea para pagar con Banco Guayaquil';
+    }
+}
