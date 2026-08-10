@@ -24,9 +24,10 @@
 <main style="max-width: 800px; width: 90%; margin: 40px auto; background: rgba(10, 10, 10, 0.95); border: 2px solid #ff0000; border-radius: 20px; padding: 30px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; align-items: center;">
   
-  <!-- Imagen del Producto -->
-  <div style="text-align: center; background: #000; border-radius: 12px; padding: 15px; border: 1px solid #333;">
+  <!-- Imagen del Producto con cursor de lupa -->
+  <div style="text-align: center; background: #000; border-radius: 12px; padding: 15px; border: 1px solid #333; cursor: pointer;" onclick="abrirZoomDetalle()">
     <img id="detImg" src="" alt="Producto" style="width: 100%; max-height: 350px; object-fit: contain; border-radius: 8px;">
+    <p style="font-size: 0.75rem; color: #aaa; margin-top: 8px;"><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar</p>
   </div>
 
   <!-- Información y Opciones -->
@@ -63,12 +64,21 @@
 </div>
 </main>
 
+<!-- Visor de imagen flotante para hacer Zoom -->
+<div id="productImageViewer" class="img-viewer-modal" onclick="cerrarVisorImagen(event)">
+    <div class="img-viewer-content" onclick="event.stopPropagation()">
+        <button class="img-viewer-close" onclick="cerrarVisorImagenDirecto()">&times;</button>
+        <img id="viewerImgTarget" src="" alt="Vista Previa">
+        <h3 id="viewerTitleTarget" class="img-viewer-title"></h3>
+    </div>
+</div>
+
 <!-- Footer -->
 <footer>
 <p>© 2026 FEER CAPS - Guayaquil, Ecuador</p>
 </footer>
 
-<!-- Script para capturar los datos y manejar el carrito en esta nueva página -->
+<!-- Script para capturar los datos, manejar el carrito y el zoom -->
 <script>
     // Leer los parámetros enviados por la URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -85,6 +95,31 @@
     // Si el producto pertenece a la sección "fifty" (gorras cerradas), mostramos el selector de tallas
     if (categoria === 'fifty') {
         document.getElementById('detTallaContainer').style.display = 'block';
+    }
+
+    // Funciones del Visor / Zoom
+    function abrirZoomDetalle() {
+        const modal = document.getElementById('productImageViewer');
+        const viewerImg = document.getElementById('viewerImgTarget');
+        const viewerTitle = document.getElementById('viewerTitleTarget');
+
+        if (modal && viewerImg && viewerTitle) {
+            viewerImg.src = imgUrl;
+            viewerTitle.innerText = name;
+            modal.style.display = 'flex';
+        }
+    }
+
+    function cerrarVisorImagenDirecto() {
+        const modal = document.getElementById('productImageViewer');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function cerrarVisorImagen(event) {
+        const modal = document.getElementById('productImageViewer');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
     }
 
     function agregarDesdeDetalle() {
