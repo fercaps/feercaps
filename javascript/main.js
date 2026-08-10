@@ -227,54 +227,25 @@ function ordenarPorPrecio(seccionId, criterio) {
     cards.forEach(card => grid.appendChild(card));
 }
 
+// Ahora al hacer clic en cualquier imagen, se abre en una pestaña nueva limpia
 function abrirZoom(imgElement) {
-const card = imgElement.closest('.card-producto');
-if (!card) return;
-
-// Si ya está ampliada, la cerramos
-if (card.classList.contains('zoom-activo')) {
-cerrarZoomActivo(card);
-return;
-}
-
-// Cerrar cualquier otra tarjeta abierta previamente
-document.querySelectorAll('.card-producto.zoom-activo').forEach(c => cerrarZoomActivo(c));
-
-// Activar modo expandido en esta tarjeta
-card.classList.add('zoom-activo');
-
-// Crear un botón de cerrar flotante dentro de la tarjeta
-const cerrarBtn = document.createElement('button');
-cerrarBtn.className = 'btn-cerrar-zoom-local';
-cerrarBtn.innerHTML = '&times;';
-cerrarBtn.onclick = (e) => {
-e.stopPropagation();
-cerrarZoomActivo(card);
-};
-card.appendChild(cerrarBtn);
-}
-
-function cerrarZoomActivo(card) {
-card.classList.remove('zoom-activo');
-const btn = card.querySelector('.btn-cerrar-zoom-local');
-if (btn) btn.remove();
+    const imageSrc = imgElement.getAttribute('src');
+    if (imageSrc) {
+        window.open(imageSrc, '_blank');
+    }
 }
 
 function cerrarZoom() {
-document.querySelectorAll('.card-producto.zoom-activo').forEach(c => cerrarZoomActivo(c));
+    // Función de compatibilidad por si se llama desde otra parte
 }
 
 window.addEventListener('click', function(event) {
-    const modalCarrito = document. getElementById('cart-modal');
-    const modalZoom = document.getElementById('imageZoomModal');
-
+    const modalCarrito = document.getElementById('cart-modal');
     if (event.target === modalCarrito) {
         modalCarrito.classList.remove('active');
     }
-    if (event.target === modalZoom) {
-        modalZoom.classList.remove('active');
-    }
 });
+
 function abrirQRModal() {
     const modal = document.getElementById('qrModal');
     if (modal) modal.style.display = 'flex';
@@ -293,10 +264,10 @@ function cambiarBancoQR() {
     if (!select || !imgQR || !txtBanco) return;
 
     if (select.value === 'pichincha') {
-        imgQR.src = 'img/qr-banco1.jpg'; // Imagen QR Banco Pichincha
+        imgQR.src = 'img/qr-banco1.jpg'; // Imagen QR Banco Pichincha[cite: 5, 6]
         txtBanco.innerText = 'Escanea para pagar con Banco Pichincha';
     } else if (select.value === 'guayaquil') {
-        imgQR.src = 'img/qr-banco2.jpg'; // Imagen QR Banco Guayaquil
+        imgQR.src = 'img/qr-banco2.jpg'; // Imagen QR Banco Guayaquil[cite: 5, 6]
         txtBanco.innerText = 'Escanea para pagar con Banco Guayaquil';
     }
 }
