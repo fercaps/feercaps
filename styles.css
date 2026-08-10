@@ -646,3 +646,63 @@ box-shadow: 0 0 60px rgba(255, 0, 0, 0.9) !important;
 background: rgba(10, 10, 10, 0.99) !important;
 border: 2px solid #ff0000 !important;
 }
+/* Nuevo visor flotante de imagen con el formato de la página */
+.img-viewer-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(8px);
+    z-index: 2147483647 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    padding: 20px;
+}
+
+.img-viewer-content {
+    position: relative !important;
+    background: rgba(15, 15, 15, 0.95) !important;
+    border: 2px solid #ff0000 !important;
+    border-radius: 16px !important;
+    padding: 25px !important;
+    max-width: 90% !important;
+    max-height: 85vh !important;
+    text-align: center !important;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.5) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.img-viewer-content img {
+    max-width: 100% !important;
+    max-height: 65vh !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    background: #000 !important;
+    border: 1px solid #333 !important;
+}
+
+.img-viewer-title {
+    color: #ffffff !important;
+    margin-top: 15px !important;
+    font-size: 1.2rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.img-viewer-close {
+    position: absolute !important;
+    top: 10px !important;
+    right: 15px !important;
+    background: none !important;
+    border: none !important;
+    color: #ff0000 !important;
+    font-size: 2.2rem !important;
+    cursor: pointer !important;
+    line-height: 1;
+}

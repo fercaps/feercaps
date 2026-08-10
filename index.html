@@ -905,6 +905,13 @@
 <p style="font-size: 0.75rem; color: #aaa; margin-top: 15px;">Envía tu comprobante junto con el pedido por WhatsApp.</p>
 </div>
 </div>
-
+<!-- Visor de imagen con formato de la página y nombre del producto -->
+<div id="productImageViewer" class="img-viewer-modal" onclick="cerrarVisorImagen(event)">
+    <div class="img-viewer-content" onclick="event.stopPropagation()">
+        <button class="img-viewer-close" onclick="cerrarVisorImagenDirecto()">&times;</button>
+        <img id="viewerImgTarget" src="" alt="Vista Previa">
+        <h3 id="viewerTitleTarget" class="img-viewer-title"></h3>
+    </div>
+</div>
 </body>
 </html>

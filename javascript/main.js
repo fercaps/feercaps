@@ -227,22 +227,52 @@ function ordenarPorPrecio(seccionId, criterio) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-// Ahora al hacer clic en cualquier imagen, se abre en una pestaña nueva limpia
+// Nueva función de zoom con el formato de la página y nombre del producto
 function abrirZoom(imgElement) {
+    const card = imgElement.closest('.card-producto');
+    if (!card) return;
+
     const imageSrc = imgElement.getAttribute('src');
-    if (imageSrc) {
-        window.open(imageSrc, '_blank');
+    const titleEl = card.querySelector('h3');
+    const productName = titleEl ? titleEl.innerText : 'FEER CAPS';
+
+    const modal = document.getElementById('productImageViewer');
+    const viewerImg = document.getElementById('viewerImgTarget');
+    const viewerTitle = document.getElementById('viewerTitleTarget');
+
+    if (modal && viewerImg && viewerTitle) {
+        viewerImg.src = imageSrc;
+        viewerTitle.innerText = productName;
+        modal.style.display = 'flex';
+    }
+}
+
+function cerrarVisorImagenDirecto() {
+    const modal = document.getElementById('productImageViewer');
+    if (modal) modal.style.display = 'none';
+}
+
+function cerrarVisorImagen(event) {
+    const modal = document.getElementById('productImageViewer');
+    if (event.target === modal) {
+        modal.style.display = 'none';
     }
 }
 
 function cerrarZoom() {
-    // Función de compatibilidad por si se llama desde otra parte
+    const modal = document.getElementById('productImageViewer');
+    if (modal) modal.style.display = 'none';
 }
 
 window.addEventListener('click', function(event) {
     const modalCarrito = document.getElementById('cart-modal');
+    const modalViewer = document.getElementById('productImageViewer');
+
     if (event.target === modalCarrito) {
         modalCarrito.classList.remove('active');
+    }
+    if (event.target === modalViewer) {
+        modalViewer.style.display = 'none';
     }
 });
 
@@ -264,10 +294,10 @@ function cambiarBancoQR() {
     if (!select || !imgQR || !txtBanco) return;
 
     if (select.value === 'pichincha') {
-        imgQR.src = 'img/qr-banco1.jpg'; // Imagen QR Banco Pichincha[cite: 5, 6]
+        imgQR.src = 'img/qr-banco1.jpg';
         txtBanco.innerText = 'Escanea para pagar con Banco Pichincha';
     } else if (select.value === 'guayaquil') {
-        imgQR.src = 'img/qr-banco2.jpg'; // Imagen QR Banco Guayaquil[cite: 5, 6]
+        imgQR.src = 'img/qr-banco2.jpg';
         txtBanco.innerText = 'Escanea para pagar con Banco Guayaquil';
     }
 }
