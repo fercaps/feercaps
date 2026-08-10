@@ -1,5 +1,14 @@
 let cart = [];
 
+// Sincronizar carrito al cargar la página si viene de la vista de producto
+window.addEventListener('DOMContentLoaded', () => {
+    const carritoGuardado = localStorage.getItem('feer_cart');
+    if (carritoGuardado) {
+        cart = JSON.parse(carritoGuardado);
+        actualizarCarritoHTML();
+    }
+});
+
 function agregarAlCarrito(button) {
     const card = button.closest('.card-producto');
     if (!card) return;
@@ -36,6 +45,7 @@ function agregarAlCarrito(button) {
     }
 
     actualizarCarritoHTML();
+    localStorage.setItem('feer_cart', JSON.stringify(cart));
 
     // Eliminar cualquier otra ventana flotante de producto abierta
     const oldPopup = document.querySelector('.cart-flotante-producto');
@@ -115,6 +125,7 @@ function actualizarCarritoHTML() {
 function eliminarDelCarrito(index) {
     cart.splice(index, 1);
     actualizarCarritoHTML();
+    localStorage.setItem('feer_cart', JSON.stringify(cart));
 }
 
 function toggleCart() {
@@ -227,7 +238,7 @@ function ordenarPorPrecio(seccionId, criterio) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-// Nueva función de zoom con el formato de la página y nombre del producto
+// Abrir una nueva pestaña independiente con el diseño de la tienda y selector de tallas
 function abrirZoom(imgElement) {
     const card = imgElement.closest('.card-producto');
     if (!card) return;
@@ -235,44 +246,26 @@ function abrirZoom(imgElement) {
     const imageSrc = imgElement.getAttribute('src');
     const titleEl = card.querySelector('h3');
     const productName = titleEl ? titleEl.innerText : 'FEER CAPS';
+    
+    const priceEl = card.querySelector('.precio');
+    const productPrice = priceEl ? priceEl.innerText.replace('$', '').trim() : '19.99';
 
-    const modal = document.getElementById('productImageViewer');
-    const viewerImg = document.getElementById('viewerImgTarget');
-    const viewerTitle = document.getElementById('viewerTitleTarget');
+    const section = card.closest('section');
+    const categoriaId = section ? section.getAttribute('id') : '';
 
-    if (modal && viewerImg && viewerTitle) {
-        viewerImg.src = imageSrc;
-        viewerTitle.innerText = productName;
-        modal.style.display = 'flex';
-    }
-}
-
-function cerrarVisorImagenDirecto() {
-    const modal = document.getElementById('productImageViewer');
-    if (modal) modal.style.display = 'none';
-}
-
-function cerrarVisorImagen(event) {
-    const modal = document.getElementById('productImageViewer');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
+    const urlDestino = `producto.html?img=${encodeURIComponent(imageSrc)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&cat=${encodeURIComponent(categoriaId)}`;
+    
+    window.open(urlDestino, '_blank');
 }
 
 function cerrarZoom() {
-    const modal = document.getElementById('productImageViewer');
-    if (modal) modal.style.display = 'none';
+    // Función de compatibilidad
 }
 
 window.addEventListener('click', function(event) {
     const modalCarrito = document.getElementById('cart-modal');
-    const modalViewer = document.getElementById('productImageViewer');
-
     if (event.target === modalCarrito) {
         modalCarrito.classList.remove('active');
-    }
-    if (event.target === modalViewer) {
-        modalViewer.style.display = 'none';
     }
 });
 
