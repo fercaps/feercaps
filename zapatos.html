@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detalle del Producto | FEER CAPS</title>
+<title>Detalle de Zapatos | FEER CAPS</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -16,7 +16,7 @@
 <div class="logo">FEER<span>CAPS</span></div>
 </div>
 <nav class="navbar">
-<a href="index.html" style="color: #fff; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-arrow-left"></i> Volver a la Tienda</a>
+<a href="index.html#zapatos" style="color: #fff; text-decoration: none; font-weight: bold;"><i class="fa-solid fa-arrow-left"></i> Volver a Zapatos</a>
 </nav>
 </header>
 
@@ -24,52 +24,58 @@
 <main style="max-width: 800px; width: 90%; margin: 40px auto; background: rgba(10, 10, 10, 0.95); border: 2px solid #ff0000; border-radius: 20px; padding: 30px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; align-items: center;">
   
-  <!-- Imagen Principal y Miniaturas Múltiples -->
+  <!-- Imagen Principal y Miniaturas -->
   <div style="text-align: center; background: #000; border-radius: 12px; padding: 15px; border: 1px solid #333;">
     <div style="cursor: pointer;" onclick="abrirZoomDetalle()">
-      <img id="detImg" src="" alt="Producto" style="width: 100%; max-height: 280px; object-fit: contain; border-radius: 8px;">
+      <img id="detImg" src="" alt="Zapato" style="width: 100%; max-height: 280px; object-fit: contain; border-radius: 8px;">
       <p style="font-size: 0.75rem; color: #aaa; margin-top: 8px;"><i class="fa-solid fa-magnifying-glass-plus"></i> Haz clic para ampliar</p>
     </div>
     
-    <!-- Contenedor Dinámico para Miniaturas -->
+    <!-- Contenedor de Miniaturas -->
     <div id="minaturasContainer" style="display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap;"></div>
   </div>
 
-  <!-- Información y Opciones -->
+  <!-- Información y Opciones de Zapatos -->
   <div style="display: flex; flex-direction: column; gap: 15px;">
     <h1 id="detTitle" style="font-size: 1.5rem; font-weight: 900; color: #fff; margin: 0;"></h1>
     <p id="detPrice" style="font-size: 1.5rem; font-weight: 800; color: #ff0000; margin: 0;"></p>
     
-    <!-- Selector de Talla Dinámico (Aparece solo si es 59FIFTY) -->
-    <div id="detTallaContainer" style="display: none;">
-      <label style="font-size: 0.85rem; color: #ccc; display: block; margin-bottom: 5px;">Selecciona tu Talla (59FIFTY):</label>
+    <!-- Selector de Talla Completo para Zapatos -->
+    <div id="detTallaContainer">
+      <label style="font-size: 0.85rem; color: #ccc; display: block; margin-bottom: 5px;">Selecciona tu Talla:</label>
       <select id="detSelectTalla" style="width: 100%; padding: 10px; background: #222; color: white; border: 1px solid #444; border-radius: 8px; font-weight: bold;">
-        <option value="7">7 (55.8 cm)</option>
-        <option value="7 1/8">7 1/8 (56.8 cm)</option>
-        <option value="7 1/4" selected>7 1/4 (57.7 cm)</option>
-        <option value="7 3/8">7 3/8 (58.7 cm)</option>
-        <option value="7 1/2">7 1/2 (59.6 cm)</option>
-        <option value="7 5/8">7 5/8 (60.6 cm)</option>
-        <option value="7 3/4">7 3/4 (61.5 cm)</option>
+        <option value="US 4.5M / 6W (EU 36)">US 4.5M / 6W (EU 36)</option>
+        <option value="US 5M / 6.5W (EU 36.5)">US 5M / 6.5W (EU 36.5)</option>
+        <option value="US 5.5M / 7W (EU 37.5)">US 5.5M / 7W (EU 37.5)</option>
+        <option value="US 6M / 7.5W (EU 38)">US 6M / 7.5W (EU 38)</option>
+        <option value="US 6.5M / 8W (EU 38.5)">US 6.5M / 8W (EU 38.5)</option>
+        <option value="US 7M / 8.5W (EU 39)">US 7M / 8.5W (EU 39)</option>
+        <option value="US 7.5M / 9W (EU 40)" selected>US 7.5M / 9W (EU 40)</option>
+        <option value="US 8M / 9.5W (EU 40.5)">US 8M / 9.5W (EU 40.5)</option>
+        <option value="US 8.5M / 10W (EU 41)">US 8.5M / 10W (EU 41)</option>
+        <option value="US 9M / 10.5W (EU 41.5)">US 9M / 10.5W (EU 41.5)</option>
+        <option value="US 9.5M / 11W (EU 42)">US 9.5M / 11W (EU 42)</option>
+        <option value="US 10M / 11.5W (EU 42.5)">US 10M / 11.5W (EU 42.5)</option>
+        <option value="US 10.5M / 12W (EU 43)">US 10.5M / 12W (EU 43)</option>
       </select>
     </div>
 
-    <p style="font-size: 0.85rem; color: #aaa; line-height: 1.4;">Producto 100% exclusivo de alta calidad. Envíos seguros a todo el Ecuador y entregas presenciales en Guayaquil.</p>
+    <p style="font-size: 0.85rem; color: #aaa; line-height: 1.4;">Zapatos 100% originales. Calidad garantizada, envíos seguros a todo el Ecuador y entregas presenciales en Guayaquil.</p>
 
     <!-- Botón Agregar al Carrito -->
-    <button onclick="agregarDesdeDetalle()" style="background-color: #ff0000; color: #ffffff; border: none; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;">
+    <button onclick="agregarZapatoDesdeDetalle()" style="background-color: #ff0000; color: #ffffff; border: none; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;">
       <i class="fa-solid fa-cart-plus"></i> Agregar al Carrito
     </button>
     
-    <button onclick="window.location.href='index.html'" style="background-color: #222; color: #ffffff; border: 1px solid #444; padding: 10px; border-radius: 12px; font-weight: bold; font-size: 0.9rem; cursor: pointer;">
-      Ver más productos
+    <button onclick="window.location.href='index.html#zapatos'" style="background-color: #222; color: #ffffff; border: 1px solid #444; padding: 10px; border-radius: 12px; font-weight: bold; font-size: 0.9rem; cursor: pointer;">
+      Ver más zapatos
     </button>
   </div>
 
 </div>
 </main>
 
-<!-- Visor de imagen flotante para hacer Zoom -->
+<!-- Visor de Zoom en Pantalla Completa -->
 <div id="productImageViewer" class="img-viewer-modal" onclick="cerrarVisorImagen(event)" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:10000;">
     <div class="img-viewer-content" onclick="event.stopPropagation()" style="text-align:center; position:relative; max-width:90%;">
         <button class="img-viewer-close" onclick="cerrarVisorImagenDirecto()" style="position:absolute; top:-40px; right:0; background:none; border:none; color:white; font-size:2rem; cursor:pointer;">&times;</button>
@@ -89,18 +95,13 @@
     const extrasStr = urlParams.get('extras');
     const name = urlParams.get('name');
     const price = urlParams.get('price');
-    const categoria = urlParams.get('cat');
 
     let imagenActualZoom = imgPrincipal;
 
     const imgElement = document.getElementById('detImg');
     imgElement.src = imgPrincipal || '';
-    document.getElementById('detTitle').innerText = name || 'Producto FEER CAPS';
+    document.getElementById('detTitle').innerText = name || 'Zapato Exclusivo FEER CAPS';
     document.getElementById('detPrice').innerText = '$' + (price || '0.00');
-
-    if (categoria === 'fifty') {
-        document.getElementById('detTallaContainer').style.display = 'block';
-    }
 
     const contenedorMinis = document.getElementById('minaturasContainer');
     let listaImágenes = [imgPrincipal];
@@ -144,12 +145,12 @@
         if (event.target === modal) modal.style.display = 'none';
     }
 
-    function agregarDesdeDetalle() {
+    function agregarZapatoDesdeDetalle() {
         let carritoLocal = JSON.parse(localStorage.getItem('feer_cart')) || [];
-        let tallaSeleccionada = (categoria === 'fifty') ? document.getElementById('detSelectTalla').value : 'Única';
+        let tallaSeleccionada = document.getElementById('detSelectTalla').value;
 
-        const precioNum = parseFloat(price) || 19.99;
-        const itemId = name + '-' + tallaSeleccionada;
+        const precioNum = parseFloat(price) || 114.99;
+        const itemId = name + ' - Talla: ' + tallaSeleccionada;
         
         const existing = carritoLocal.find(item => item.id === itemId);
         if (existing) {
@@ -166,8 +167,8 @@
         }
 
         localStorage.setItem('feer_cart', JSON.stringify(carritoLocal));
-        alert('¡Producto agregado al carrito con éxito!');
-        window.location.href = 'index.html';
+        alert('¡Zapato agregado al carrito con éxito!');
+        window.location.href = 'index.html#zapatos';
     }
 </script>
 

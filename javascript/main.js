@@ -237,7 +237,7 @@ function ordenarPorPrecio(seccionId, criterio) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-// Abrir la página de detalles codificando correctamente las imágenes para dispositivos móviles
+// Abrir la página de detalles (redirige a zapatos.html si es de la sección zapatos, o producto.html para el resto)
 function abrirZoom(imgElement) {
     const card = imgElement.closest('.card-producto');
     if (!card) return;
@@ -254,7 +254,9 @@ function abrirZoom(imgElement) {
     const section = card.closest('section');
     const categoriaId = section ? section.getAttribute('id') : '';
 
-    let urlDestino = `producto.html?img=${encodeURIComponent(imageSrc)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&cat=${encodeURIComponent(categoriaId)}`;
+    let paginaDestino = (categoriaId === 'zapatos') ? 'zapatos.html' : 'producto.html';
+
+    let urlDestino = `${paginaDestino}?img=${encodeURIComponent(imageSrc)}&name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&cat=${encodeURIComponent(categoriaId)}`;
     
     if (extras) {
         urlDestino += `&extras=${encodeURIComponent(extras)}`;
@@ -263,9 +265,7 @@ function abrirZoom(imgElement) {
     window.location.href = urlDestino;
 }
 
-function cerrarZoom() {
-    // Función de compatibilidad
-}
+function cerrarZoom() {}
 
 window.addEventListener('click', function(event) {
     const modalCarrito = document.getElementById('cart-modal');
