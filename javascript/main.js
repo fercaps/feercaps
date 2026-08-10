@@ -237,13 +237,14 @@ function ordenarPorPrecio(seccionId, criterio) {
     cards.forEach(card => grid.appendChild(card));
 }
 
-// Abrir una nueva pestaña independiente enviando todas las imágenes adicionales configuradas
+// Abrir la página de detalles codificando correctamente las imágenes para dispositivos móviles
 function abrirZoom(imgElement) {
     const card = imgElement.closest('.card-producto');
     if (!card) return;
 
-    const imageSrc = imgElement.getAttribute('src');
-    const extras = imgElement.getAttribute('data-extras') || '';
+    const imageSrc = imgElement.getAttribute('src') || '';
+    const extras = imgElement.getAttribute('data-extras') || imgElement.getAttribute('data-segunda-imagen') || '';
+    
     const titleEl = card.querySelector('h3');
     const productName = titleEl ? titleEl.innerText : 'FEER CAPS';
     
@@ -259,7 +260,7 @@ function abrirZoom(imgElement) {
         urlDestino += `&extras=${encodeURIComponent(extras)}`;
     }
     
-    window.open(urlDestino, '_blank');
+    window.location.href = urlDestino;
 }
 
 function cerrarZoom() {
